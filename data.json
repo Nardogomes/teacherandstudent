@@ -1,1 +1,20 @@
-{"avatar_url":"http://google.com","name":"Lucas","birth":"2020-07-07","sexo":"M","disciplinas":"Português"}
+{
+  "instructors": [
+    {
+      "avatar_url": "http://google.com",
+      "name": "fulano",
+      "birth": "2020-07-07",
+      "sexo": "M",
+      "disciplinas": "Português",
+      "created_at": 1595185076642
+    },
+    {
+      "avatar_url": "http://google.com",
+      "name": "Kelly",
+      "birth": 1593648000000,
+      "sexo": "M",
+      "disciplinas": "Matemática",
+      "created_at": 1595185355525
+    }
+  ]
+}
