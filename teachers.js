@@ -11,10 +11,22 @@ exports.post = function(req, res) {
             return res.send("Por favor preencha os campos.")
     }
 
-    req.body.birth = Date.parse(req.body.birth)
-    req.body.created_at = Date.now()
+    let { avatar_url, name, birth, gender, disciplinas } = req.body
 
-    data.instructors.push(req.body)
+    birth = Date.parse(req.body.birth)
+    const created_at = Date.now()
+    const id = data.instructors.length + 1
+
+
+    data.instructors.push({
+        id,
+        avatar_url,
+        name,
+        birth,
+        gender,
+        disciplinas,
+        created_at
+    })
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err) {
         if(err) return res.send("Erre na escrita do arquivo.")

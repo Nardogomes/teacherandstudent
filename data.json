@@ -1,20 +1,12 @@
 {
   "instructors": [
     {
+      "id": 1,
       "avatar_url": "http://google.com",
-      "name": "fulano",
-      "birth": "2020-07-07",
-      "sexo": "M",
-      "disciplinas": "Português",
-      "created_at": 1595185076642
-    },
-    {
-      "avatar_url": "http://google.com",
-      "name": "Kelly",
-      "birth": 1593648000000,
-      "sexo": "M",
+      "name": "Lucas",
+      "birth": 1595462400000,
       "disciplinas": "Matemática",
-      "created_at": 1595185355525
+      "created_at": 1595190807602
     }
   ]
 }
