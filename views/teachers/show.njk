@@ -17,7 +17,7 @@
             
             <div class="item">
                 <div>Idade</div>
-                <div>{{ teacher.birth }}</div>
+                <div>{{ teacher.age }}</div>
             </div>
 
             <div class="item">
@@ -28,8 +28,8 @@
             <div class="item">
                 <div>Disciplinas</div>
                 <div>
-                    {% for disciplina in disciplinas %}
-                        <span>{{ teacher.disciplina }}</span>
+                    {% for disciplina in teacher.disciplinas %}
+                        <span>{{ disciplina }}</span>
                     {% endfor %}
                 </div>
             </div>
