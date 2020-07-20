@@ -3,11 +3,11 @@
     {
       "id": 1,
       "avatar_url": "http://google.com",
-      "name": "fulano",
-      "birth": 1595462400000,
+      "name": "Nardo",
+      "birth": 539654400000,
       "sexo": "M",
-      "disciplinas": "Matemática",
-      "created_at": 1595215919128
+      "disciplinas": "Matemática, Física",
+      "created_at": 1595288175186
     }
   ]
 }
