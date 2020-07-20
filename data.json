@@ -1,12 +1,13 @@
 {
-  "instructors": [
+  "teachers": [
     {
       "id": 1,
       "avatar_url": "http://google.com",
-      "name": "Lucas",
+      "name": "fulano",
       "birth": 1595462400000,
+      "sexo": "M",
       "disciplinas": "Matemática",
-      "created_at": 1595190807602
+      "created_at": 1595215919128
     }
   ]
 }
