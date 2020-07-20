@@ -1,6 +1,19 @@
 const fs = require('fs')
 const data = require('./data.json')
 
+//Show
+exports.show = function(req, res) {
+    const { id } = req.params
+
+    const foundTeachers = data.teachers.find(function(teacher) {
+        return teacher.id == id
+    })
+
+    if(!foundTeachers) res.send("Teacher not found.")
+
+    return res.render("teachers/show", { teacher: foundTeachers })
+}
+
 //Create
 exports.post = function(req, res) {
     
@@ -11,19 +24,19 @@ exports.post = function(req, res) {
             return res.send("Por favor preencha os campos.")
     }
 
-    let { avatar_url, name, birth, gender, disciplinas } = req.body
+    let { avatar_url, name, birth, sexo, disciplinas } = req.body
 
     birth = Date.parse(req.body.birth)
     const created_at = Date.now()
-    const id = data.instructors.length + 1
+    const id = data.teachers.length + 1
 
 
-    data.instructors.push({
+    data.teachers.push({
         id,
         avatar_url,
         name,
         birth,
-        gender,
+        sexo,
         disciplinas,
         created_at
     })
