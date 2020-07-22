@@ -16,7 +16,7 @@ exports.show = function(req, res) {
         ...foundTeachers,
         age: age(foundTeachers.birth),
         disciplinas: foundTeachers.disciplinas.split(","),
-        created_at: ""
+        created_at: new Intl.DateTimeFormat('pt-BR').format(foundTeachers.created_at)
     }
 
     return res.render("teachers/show", { teacher })
