@@ -11,5 +11,20 @@ module.exports = {
         }
     
         return age
+    },
+    date: function(timestamp) {
+        const date = new Date(timestamp)
+
+        //Lógica para obter a data no formato yyyy-mm-dd utilizando o padrão global UTC
+        //yyyy
+        const year = date.getUTCFullYear()
+
+        //mm
+        const month = `0${date.getUTCMonth() + 1}`.slice(-2)
+
+        //dd
+        const day = `0${date.getUTCDate()}`.slice(-2)
+
+        return `${year}-${month}-${day}`
     }
 }
