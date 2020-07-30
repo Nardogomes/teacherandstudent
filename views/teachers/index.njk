@@ -6,38 +6,26 @@
 
 {% block content %}
     <div class="card">
-        <section class="avatar" style="background: url(https://source.unsplash.com/collection/332741/900x900) no-repeat center center / cover"></section>
-        <section class="details">
-            
-            <h3>Datalhes</h3>
-            <div class="item">
-                <div>Teacher</div>
-                <div>Ednardo Gomes</div>
-            </div>
-            
-            <div class="item">
-                <div>Idade</div>
-                <div>20</div>
-            </div>
-
-            <div class="item">
-                <div>Sexo</div>
-                <div>Masculino</div>
-            </div>
-
-            <div class="item">
-                <div>Disciplinas</div>
-                <div>
-                    <span>Português</span>
-                    <span>Literatura</span>
-                </div>
-            </div>
-
-            <div class="item">
-                <div>Desde</div>
-                <div>24/03/2005</div>
-            </div>
-
-        </section>
+        <table>
+            <thead>
+                <tr>
+                    <th>Teacher</th>
+                    <th>Disciplina</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for teacher in teachers %}
+                <tr>
+                    <td>
+                        <span style="background-image: url({{teacher.avatar_url}})"></span>
+                        {{ teacher.name }}
+                    </td>
+                    <td>{{ teacher.disciplina }}</td>
+                    <td><a href="/teachers/{{teacher.id}}"></a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
     </div>
 {% endblock content %}
