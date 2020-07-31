@@ -5,7 +5,7 @@
 {% endblock head %}
 
 {% block content %}
-    <div class="card">
+    <div class="card table-container">
         <table>
             <thead>
                 <tr>
@@ -15,16 +15,16 @@
                 </tr>
             </thead>
             <tbody>
-            {% for teacher in teachers %}
-                <tr>
-                    <td>
-                        <span style="background-image: url({{teacher.avatar_url}})"></span>
-                        {{ teacher.name }}
-                    </td>
-                    <td>{{ teacher.disciplina }}</td>
-                    <td><a href="/teachers/{{teacher.id}}"></a></td>
-                </tr>
-            {% endfor %}
+                {% for teacher in teachers %}
+                    <tr>
+                        <td>
+                            <span style="background-image: url({{teacher.avatar_url}})"></span>
+                            {{ teacher.name }}
+                        </td>
+                        <td>{{ teacher.disciplinas }}</td>
+                        <td><a href="/teachers/{{teacher.id}}"></a></td>
+                    </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
