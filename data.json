@@ -7,6 +7,14 @@
       "email": "lucas@lucas.com",
       "birth": 960508800000,
       "sexo": "M"
+    },
+    {
+      "id": 2,
+      "avatar_url": "https://images.unsplash.com/photo-1556302132-40bb13638500?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=755&q=80",
+      "name": "fulano",
+      "email": "lucas@lucas.com",
+      "birth": 318816000000,
+      "sexo": "M"
     }
   ],
   "teachers": [
