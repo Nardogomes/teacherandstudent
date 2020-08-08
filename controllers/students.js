@@ -1,27 +1,9 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { age, date } = require('../utils')
+const { date } = require('../utils')
 
 exports.index = function(req, res) {
     return res.render("students/index", { students: data.students })
-}
-
-//Show
-exports.show = function(req, res) {
-    const { id } = req.params
-
-    const foundStudents = data.students.find(function(student) {
-        return student.id == id
-    })
-
-    if(!foundStudents) res.send("student not found.")
-
-    const student = {
-        ...foundStudents,
-        age: age(foundStudents.birth)
-    }
-
-    return res.render("students/show", { student })
 }
 
 //Create
@@ -38,8 +20,6 @@ exports.post = function(req, res) {
         if(req.body[key] == "")
             return res.send("Por favor preencha os campos.")
     }
-
-    let { avatar_url, name, birth, sexo, disciplinas } = req.body
 
     birth = Date.parse(req.body.birth)
     
@@ -60,6 +40,23 @@ exports.post = function(req, res) {
 
         return res.redirect(`/students/${id}`)
     })
+}
+
+exports.show = function(req, res) {
+    const { id } = req.params
+
+    const foundStudents = data.students.find(function(student) {
+        return student.id == id
+    })
+
+    if(!foundStudents) res.send("student not found.")
+
+    const student = {
+        ...foundStudents,
+        birth: date(foundStudents.birth).birthDay
+    }
+
+    return res.render("students/show", { student })
 }
 
 //Edit
