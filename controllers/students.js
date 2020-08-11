@@ -91,10 +91,10 @@ exports.put = function(req, res) {
     if(!foundStudents) return res.send('student not found!')
 
     const student = {
+        id: Number(req.body.id),
         ...foundStudents,
         ...req.body,
-        birth: Date.parse(req.body.birth),
-        id: Number(req.body.id)
+        birth: Date.parse(req.body.birth)
     }
 
     data.students[index] = student
