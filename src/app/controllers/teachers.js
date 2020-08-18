@@ -1,4 +1,5 @@
 const { age, date } = require('../../lib/utils')
+const db = require('../../config/db')
 
 module.exports = {
     index(req,res) {
@@ -15,9 +16,33 @@ module.exports = {
                 return res.send("Por favor preencha os campos.")
         }
 
-        let { avatar_url, name, birth, sexo, disciplinas } = req.body
+        const query = `
+            INSERT INTO teachers (
+                name,
+                avatar_url,
+                sexo,
+                disciplinas,
+                birth,
+                created_at
+            ) VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING id
+        `
 
-        return
+        const values = [
+            req.body.name,
+            req.body.avatar_url,
+            req.body.sexo,
+            req.body.disciplinas,
+            date(req.body.birth).iso,
+            date(Date.now()).iso
+        ]
+
+        db.query(query, values, function(err, results) {
+            if(err) return res.send('Erro no banco de dados!')
+            
+            return res.redirect(`/teachers/${results.rows[0].id}`)
+        })
+
     },
     show(req, res) {
         return
