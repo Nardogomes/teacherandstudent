@@ -1,15 +1,10 @@
-const { age, date } = require('../../lib/utils')
-const db = require('../../config/db')
+const Teacher = require('../models/teacher')
 
 module.exports = {
     index(req,res) {
-
-        db.query(`SELECT * FROM teachers`, function(err, results) {
-            if(err) return res.send('Erro no banco de dados!')
-
-            return res.render("teachers/index", {teachers: results.rows})
+        Teacher.all(function(teachers) {
+            return res.render("teachers/index", { teachers })
         })
-
     },
     create(req, res) {
         return res.render("teachers/create")
@@ -22,33 +17,9 @@ module.exports = {
                 return res.send("Por favor preencha os campos.")
         }
 
-        const query = `
-            INSERT INTO teachers (
-                name,
-                avatar_url,
-                sexo,
-                disciplinas,
-                birth,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING id
-        `
-
-        const values = [
-            req.body.name,
-            req.body.avatar_url,
-            req.body.sexo,
-            req.body.disciplinas,
-            date(req.body.birth).iso,
-            date(Date.now()).iso
-        ]
-
-        db.query(query, values, function(err, results) {
-            if(err) return res.send('Erro no banco de dados!')
-            
-            return res.redirect(`/teachers/${results.rows[0].id}`)
+        Teacher.create(req.body, function(teacher) {
+            return res.redirect(`/teachers/${teacher.id}`)
         })
-
     },
     show(req, res) {
         return
