@@ -3,76 +3,73 @@ const db = require('../../config/db')
 
 module.exports = {
     all(callback) {
-        db.query(`SELECT * FROM teachers ORDER BY name ASC`, function(err, results) {
-            if(err) throw `Database error! ${err}`
+        db.query(`SELECT * FROM students ORDER BY name ASC`, function(err, results) {
+            if(err) throw `Erro no banco de dados! ${err}`
 
             callback(results.rows)
         })
     },
     create(data, callback) {
         const query = `
-            INSERT INTO teachers (
-                name,
+            INSERT INTO students (
                 avatar_url,
-                sexo,
-                disciplinas,
+                name,
+                email,
                 birth,
-                created_at
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+                sexo
+            ) VALUES ($1, $2, $3, $4, $5)
             RETURNING id
         `
-
         const values = [
-            data.name,
             data.avatar_url,
-            data.sexo,
-            data.disciplinas,
+            data.name,
+            data.email,
             date(data.birth).iso,
-            date(Date.now()).iso
+            data.sexo
         ]
 
         db.query(query, values, function(err, results) {
-            if(err) throw `Database error! ${err}`
-            
+            if(err) throw `Erro no banco de dados! ${err}`
+
             callback(results.rows[0])
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM teachers WHERE id = $1`, [id], function(err, results) {
-            if(err) throw `Database error! ${err}`
+        db.query(`SELECT * FROM students WHERE id = $1`, [id], function(err, results) {
+            if(err) throw `Erro no banco de dados! ${err}`
 
             callback(results.rows[0])
         })
     },
     update(data, callback) {
         const query = `
-            UPDATE teachers SET
+            UPDATE students SET
                 avatar_url=($1),
                 name=($2),
-                birth=($3),
-                sexo=($4),
-                disciplinas=($5)
+                email=($3),
+                birth=($4),
+                sexo=($5)
             WHERE id = $6
         `
 
         const values = [
             data.avatar_url,
             data.name,
+            data.email,
             date(data.birth).iso,
             data.sexo,
-            data.disciplinas,
             data.id
         ]
 
         db.query(query, values, function(err, results) {
-            if(err) throw `Erro no banco de dados ${err}`
+            if(err) throw `Erro no banco de dados! ${err}`
 
             callback()
         })
     },
     delete(id, callback) {
-        db.query(`DELETE FROM teachers WHERE id = $1`, [id], function(err, results) {
-            if(err) throw `Database erro! ${err}`
+        db.query(`DELETE FROM students WHERE id = $1`, [id], function(err, results) {
+            if(err) throw `Erro no banco de dados! ${err}`
 
             callback()
         })
