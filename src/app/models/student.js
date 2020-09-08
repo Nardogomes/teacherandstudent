@@ -16,8 +16,9 @@ module.exports = {
                 name,
                 email,
                 birth,
-                sexo
-            ) VALUES ($1, $2, $3, $4, $5)
+                sexo,
+                teacher_id
+            ) VALUES ($1, $2, $3, $4, $5, $6)
             RETURNING id
         `
         const values = [
@@ -25,7 +26,8 @@ module.exports = {
             data.name,
             data.email,
             date(data.birth).iso,
-            data.sexo
+            data.sexo,
+            data.teacher
         ]
 
         db.query(query, values, function(err, results) {
@@ -35,7 +37,11 @@ module.exports = {
         })
     },
     find(id, callback) {
-        db.query(`SELECT * FROM students WHERE id = $1`, [id], function(err, results) {
+        db.query(`
+            SELECT students.*, teachers.name AS teacher_name 
+            FROM students
+            LEFT JOIN teachers ON (students.teacher_id = teachers.id)
+            WHERE students.id = $1`, [id], function(err, results) {
             if(err) throw `Erro no banco de dados! ${err}`
 
             callback(results.rows[0])
@@ -48,8 +54,9 @@ module.exports = {
                 name=($2),
                 email=($3),
                 birth=($4),
-                sexo=($5)
-            WHERE id = $6
+                sexo=($5),
+                teacher_id=($6)
+            WHERE id = $7
         `
 
         const values = [
@@ -58,6 +65,7 @@ module.exports = {
             data.email,
             date(data.birth).iso,
             data.sexo,
+            data.teacher,
             data.id
         ]
 

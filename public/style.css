@@ -102,8 +102,8 @@ header {
 
 .details h3,
 .details .item div:nth-child(1) {
-    line-height: 24px;
     font-size: 14px;
+    line-height: 24px;
     color: #777;
     letter-spacing: 0.7px;
     font-weight: normal;
@@ -140,7 +140,7 @@ header {
 }
 
 /* FORM */
-input {
+input, select {
     width: 100%;
     outline: none;
     color: #555;
