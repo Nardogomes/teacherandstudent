@@ -7,7 +7,7 @@ module.exports = {
 
         if(filter) {
             Teacher.findBy(filter, function(teachers) {
-                return res.render("teachers/index", { teachers })
+                return res.render("teachers/index", { teachers, filter })
             })
         } else {
             Teacher.all(function(teachers) {
